@@ -1,0 +1,43 @@
+[
+    {
+    "faculty_id": 1,
+    "faculty_name": "faculty of natural science"
+    }, 
+    {
+    "faculty_id": 2,
+    "faculty_name": "faculty of politic"
+    }, 
+    {
+    "faculty_id": 3,
+    "faculty_name": "faculty of social science"
+    }, 
+    {
+    "faculty_id": 4,
+    "faculty_name": "faculty of agrilculture"
+    }, 
+    {
+    "faculty_id": 5,
+    "faculty_name": "faculty of letters"
+    }, 
+    {
+    "faculty_id": 6,
+    "faculty_name": "faculty of engineering"
+    }, 
+    {
+    "faculty_id": 7,
+    "faculty_name": "faculty of forestly"
+    }, 
+    {
+    "faculty_id": 8,
+    "faculty_name": "faculty of sports"
+    }, 
+    {
+    "faculty_id": 9,
+    "faculty_name": "faculty of education"
+    }, 
+    {
+    "faculty_id": 10,
+    "faculty_name": "faculty of economic"
+    }, 
+
+]
