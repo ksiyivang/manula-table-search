@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Tr from './tr';
 import TextField from '../ui/text-field';
+import DataTable from '../ui/data-table';
 
 // 
 import './styles.css';
@@ -28,6 +29,7 @@ export default function App() {
 
   // useState
   const [query, setQuery] = useState('');
+  const [additionalData, setAdditionalData] = useState([]);
 
   // useEffect
 
@@ -67,6 +69,35 @@ export default function App() {
     );
   }
 
+  function loadMore() {
+    if (state.loading) return;
+    setState((prev) => ({
+      ...prev,
+      loading: true,
+    }));
+
+    setState((prev) => ({
+      data: [
+        ...prev.data,
+        ...pageData({ data: json, page: prev.page + 1 }),
+      ],
+      loading: false,
+      page: prev.page + 1,
+    }));
+  }
+
+  function toggleAdditionalData(row) {
+    setAdditionalData((prev) =>
+      additionalData.includes(row.id)
+        ? prev.filter((id) => row.id !== id)
+        : [...prev, row.id],
+    );
+  }
+  function _onClickDetail(e) {
+    e.preventDefault();
+    console.log("id: ")
+  }
+
   return (
     <div>
       Hello
@@ -76,19 +107,43 @@ export default function App() {
         value={query}
         onChange={(val) => setQuery(val)}
       />
+      <DataTable
+        loadMore={loadMore}
+        items={state.data}
+        renderHead={() => (
+          <>
+            <Tr label='ລະຫັດ' />
+            <Tr
+              label='ຊື່່ຄະນະ'
+              sortedBy={state.sortedBy}
+              sort={{ key: 'faculty_name', changer: setState }}
+            />
+          </>
+        )}
+        renderRow={(row) => (
+          <>
+            <tr onClick={(e) => { _onClickDetail(e) }}>
+              <td
+              // onClick={() => toggleAdditionalData(row)}
+              >
+                {row.faculty_id}
+              </td>
+              <td
+              // onClick={() => toggleAdditionalData(row)}
+              >
+                {row.faculty_name}
+              </td>
+            </tr>
+            {/* {additionalData.includes(row.id) ? (
+              <tr>
+                <td colSpan={6}>{row.ip_address}</td>
+              </tr>
+            ) : null} */}
+          </>
+        )}
+      />
 
-      <>
-        <Tr label='ລະຫັດ' />
-        <Tr
-          label='ຊື່່ຄະນະ'
-          sortedBy={state.sortedBy}
-          sort={{ key: 'faculty_name', changer: setState }}
-        />
-      </>
-
-
-
-    </div>
+    </div >
   )
 
 }
